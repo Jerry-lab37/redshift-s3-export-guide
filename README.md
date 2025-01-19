@@ -93,14 +93,12 @@ Run analytics queries, such as:
 1. Total sales for each product: 
 
 SELECT product_name, SUM(quantity * price) AS total_sales 
-
 FROM sales_data 
 GROUP BY product_name;
 
 2.Find the most popular product: 
 
 SELECT product_name, SUM(quantity) AS total_quantity 
-
 FROM sales_data 
 GROUP BY product_name 
 ORDER BY total_quantity DESC 
@@ -109,6 +107,7 @@ LIMIT 1;
 ##Step 4: Export Data from Redshift to S3 
 
 Use the UNLOAD command to export filtered data back to S3: 
+
 UNLOAD ('SELECT * FROM sales_data WHERE quantity > 10') 
 TO 's3://my-redshift-data/sales_data_filtered_' 
 IAM_ROLE 'arn:aws:iam::account-id:role/RedshiftS3Role' 
